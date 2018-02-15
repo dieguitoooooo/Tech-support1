@@ -26,11 +26,17 @@ public class InputReader
      *
      * @return  A String typed by the user.
      */
-    public String getInput()
+    public HashSet <String> getInput()
     {
         System.out.print("> ");         // print prompt
         String inputLine = reader.nextLine();
-        //divide el array de cadenas por espacios y devuelve la primera
-        return inputLine.split(" ")[0];
+        inputLine.length();
+        
+        HashSet<String> setOfWords = new HashSet<>();
+        String[] arrayStrings = inputLine.split(" ");
+        for(int j = 0; j < arrayStrings.length; j++){
+            setOfWords.add(arrayStrings[j]);
+        }
+        return setOfWords;
     }
 }
