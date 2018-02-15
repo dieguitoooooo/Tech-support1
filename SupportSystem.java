@@ -33,9 +33,7 @@ public class SupportSystem
     public void start()
     {
         boolean finished = false;
-
         printWelcome();
-
         while(!finished) {
             String input = reader.getInput();
 
@@ -43,7 +41,7 @@ public class SupportSystem
                 finished = true;
             }
             else {
-                String response = responder.generateResponse();
+                String response = responder.generateResponse(input);
                 System.out.println(response);
             }
         }
