@@ -30,7 +30,7 @@ public class InputReader
     {
         System.out.print("> ");         // print prompt
         String inputLine = reader.nextLine();
-
-        return inputLine;
+        //divide el array de cadenas por espacios y devuelve la primera
+        return inputLine.split(" ")[0];
     }
 }
