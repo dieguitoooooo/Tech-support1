@@ -16,7 +16,7 @@ public class Responder
     Random aleatorio;
     ArrayList<String> responde;
     HashMap<String, String> responsesAboutInput;
-    
+
     /**
      * Construct a Responder - nothing to do
      */
@@ -25,13 +25,13 @@ public class Responder
         aleatorio = new Random();
         responde = new ArrayList<>();
         responsesAboutInput = new HashMap<>();
-        
+
         responde.add("Thank You");
         responde.add("Congratulations");
         responde.add("Really?");
         responde.add("Thats Right");
         responde.add("Okay");
-        
+
         responsesAboutInput.put("Windows", "The system cannot find the file specified.");
         responsesAboutInput.put("Android", "Access is denied.");
         responsesAboutInput.put("IOs", "An attempt was made to load a program with an incorrect format.");
@@ -48,11 +48,18 @@ public class Responder
     {
         String responses = null;
         Iterator<String> iterator = userInput.iterator();
-        String userInputString = iterator.next();
-        responses = responsesAboutInput.get(userInputString);
+        boolean searching = true;
+
+        while(iterator.hasNext() && searching) {
+            if(responses != null){
+                searching = false;
+            }
+        }
+
         if (responses == null){
             responses = responde.get(aleatorio.nextInt(responde.size()));
         }
         return responses;
     }
+
 }
