@@ -15,7 +15,7 @@ public class Responder
 {
     Random aleatorio;
     ArrayList<String> responde;
-    HashMap<String, String> responsesAboutInput;
+    HashMap<HashSet<String>, String> responsesAboutInput;
 
     /**
      * Construct a Responder - nothing to do
@@ -32,11 +32,25 @@ public class Responder
         responde.add("Thats Right");
         responde.add("Okay");
 
-        responsesAboutInput.put("Windows", "The system cannot find the file specified.");
-        responsesAboutInput.put("Android", "Access is denied.");
-        responsesAboutInput.put("IOs", "An attempt was made to load a program with an incorrect format.");
-        responsesAboutInput.put("Linux", "The system cannot move the file to a different disk drive.");
-        responsesAboutInput.put("Solaris", "The device does not recognize the command.");
+        HashSet<String> set01 = new HashSet<>();
+        set01.add("free");
+        set01.add("app");
+
+        HashSet<String> set02 = new HashSet<>();
+        set02.add("free");
+
+        HashSet<String> set03 = new HashSet<>();
+        set03.add("app");
+
+        HashSet<String> set04 = new HashSet<>();
+        set04.add("linux");
+        set04.add("problem");
+        set04.add("crash");
+
+        responsesAboutInput.put(set04, "The system cannot find the file specified.");
+        responsesAboutInput.put(set01, "Access is denied.");
+        responsesAboutInput.put(set02, "An attempt was made to load a program with an incorrect format.");
+        responsesAboutInput.put(set03, "The system cannot move the file to a different disk drive.");
 
     }
 
@@ -47,14 +61,8 @@ public class Responder
     public String generateResponse(HashSet<String> userInput)
     {
         String responses = null;
-        Iterator<String> iterator = userInput.iterator();
-        boolean searching = true;
-
-        while(iterator.hasNext() && searching) {
-            if(responses != null){
-                searching = false;
-            }
-        }
+        
+        responses = responsesAboutInput.get(userInput);
 
         if (responses == null){
             responses = responde.get(aleatorio.nextInt(responde.size()));
