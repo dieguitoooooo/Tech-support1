@@ -23,14 +23,8 @@ public class Responder
     public Responder()
     {
         aleatorio = new Random();
-        responde = new ArrayList<>();
-        responsesAboutInput = new HashMap<>();
 
-        responde.add("Thank You");
-        responde.add("Congratulations");
-        responde.add("Really?");
-        responde.add("Thats Right");
-        responde.add("Okay");
+        responsesAboutInput = new HashMap<>();
 
         HashSet<String> set01 = new HashSet<>();
         set01.add("free");
@@ -61,13 +55,29 @@ public class Responder
     public String generateResponse(HashSet<String> userInput)
     {
         String responses = null;
-        
+
         responses = responsesAboutInput.get(userInput);
 
         if (responses == null){
-            responses = responde.get(aleatorio.nextInt(responde.size()));
+            if(responde.size() >0){
+                responses = responde.remove(aleatorio.nextInt(responde.size()));
+            }
+            else{
+                responses = "Sorry, I dont understand your question!";
+            }
         }
         return responses;
+    }
+
+    private void createDefaultesponses()
+    {
+        responde = new ArrayList<>();
+
+        responde.add("Thank You");
+        responde.add("Congratulations");
+        responde.add("Really?");
+        responde.add("Thats Right");
+        responde.add("Okay");
     }
 
 }
